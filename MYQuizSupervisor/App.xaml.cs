@@ -8,7 +8,7 @@ namespace MYQuizSupervisor
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MYQuizSupervisorPage());
+            MainPage = new NavigationPage(new CreateQuestionView());
         }
 
         protected override void OnStart()
