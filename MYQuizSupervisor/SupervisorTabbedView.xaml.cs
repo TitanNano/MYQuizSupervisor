@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace MYQuizSupervisor
 {
-    public partial class SendQuestionView : ContentPage
+    public partial class SupervisorTabbedView : TabbedPage
     {
-        public SendQuestionView()
+        public SupervisorTabbedView()
         {
             InitializeComponent();
         }
