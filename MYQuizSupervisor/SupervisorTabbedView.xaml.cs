@@ -15,6 +15,7 @@ namespace MYQuizSupervisor
         {
             InitializeComponent();
 
+            
             var list = new ObservableCollection<ListItem>();
 
             list.Add(new ListItem { Title = "Item 1" });
@@ -22,6 +23,8 @@ namespace MYQuizSupervisor
 
             repeater.ItemsSource = list;
             autoComplete.Suggestions = list;
+
+           
         }
     }
 
