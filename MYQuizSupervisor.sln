@@ -126,4 +126,14 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = VisualStudio
+		$1.scope = text/plain
+		$1.inheritsScope = text/plain
+		$0.XmlFormattingPolicy = $2
+		$2.inheritsSet = null
+		$2.scope = application/xaml+xml
+	EndGlobalSection
 EndGlobal

@@ -37,4 +37,6 @@ Thumbs.db
 *.Resharper
 
 # dotCover
-*.dotCover
+*.dotCoveri
+
+Droid/Resources/Resource.designer.cs

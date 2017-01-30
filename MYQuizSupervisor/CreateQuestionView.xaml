@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage Title="Neue Frage" 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:MYQuizSupervisor"
+    xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+    x:Class="MYQuizSupervisor.CreateQuestionView">
+	<ContentPage.Title>Neue Frage Erstellen</ContentPage.Title>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="repeatTemplate">
+                <ViewCell>
+                    <Entry Placeholder="Antwort Text" Margin="0, 10, 0, 0" Text="{Binding Title}"></Entry>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+	
+    <ContentPage.Content>
+        <StackLayout Margin="30, 15" VerticalOptions="FillAndExpand" Spacing="10">
+            <controls:AutoCompleteView x:Name="autoComplete" Placeholder="Veranstaltung"
+                ShowSearchButton="false"/>
+						
+            <Entry Placeholder="Fragen Text"></Entry>
+
+			<StackLayout VerticalOptions="FillAndExpand" Spacing="10">
+    			<controls:RepeaterView 
+    				x:TypeArguments="local:ListItem" 
+    				x:Name="repeater"
+    				ItemTemplate="{StaticResource repeatTemplate}"></controls:RepeaterView>
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <Entry Placeholder="Min" Keyboard="Numeric" HorizontalOptions="FillAndExpand"></Entry>
+				<Label Text=" : "/>
+				<Entry Placeholder="Sec" Keyboard="Numeric" HorizontalOptions="FillAndExpand"></Entry>
+			</StackLayout>
+			<Button Text="Weiter" HorizontalOptions="Fill"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
