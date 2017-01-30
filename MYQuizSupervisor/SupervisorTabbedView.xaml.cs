@@ -1,15 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 
 namespace MYQuizSupervisor
 {
-    public partial class CreateQuestionView : ContentPage
+    public partial class SupervisorTabbedView : TabbedPage
     {
-        public CreateQuestionView()
+        public SupervisorTabbedView()
         {
             InitializeComponent();
 
+            
             var list = new ObservableCollection<ListItem>();
 
             list.Add(new ListItem { Title = "Item 1" });
@@ -17,6 +23,8 @@ namespace MYQuizSupervisor
 
             repeater.ItemsSource = list;
             autoComplete.Suggestions = list;
+
+           
         }
     }
 
