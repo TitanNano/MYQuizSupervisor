@@ -15,7 +15,7 @@
       <StackLayout>
         <Label Text="Name der Veranstaltung" FontSize="24"/>
         <Editor x:Name="ed_veranstaltungsname" />
-        <Button x:Name="btn_weiter" Text="weiter" />
+        <Button x:Name="btn_veranstaltung_weiter" Text="weiter" />
       </StackLayout>
     </StackLayout>
     
@@ -61,14 +61,13 @@
           </StackLayout>
         </StackLayout>
 
-        <Button x:Name="btn_weiter" Text="weiter" Margin="0,10,0,0"/>
+        <Button x:Name="btn_fragebogen_weiter" Text="weiter" Margin="0,10,0,0"/>
       </StackLayout>
     </StackLayout>
     
   </ContentPage>
 
-
-  <ContentPage>
+   <ContentPage>
     <TabbedPage.Title>
       Frage erstellen
     </TabbedPage.Title>
@@ -106,5 +105,6 @@
       </StackLayout>
     </ContentPage.Content>
   </ContentPage>
+
   
 </TabbedPage>

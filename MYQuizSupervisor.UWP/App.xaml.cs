@@ -56,6 +56,8 @@ namespace MYQuizSupervisor.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+                Xamarin.Forms.Forms.Init(e);
+
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Zustand von zuvor angehaltener Anwendung laden
