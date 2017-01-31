@@ -26,8 +26,6 @@ namespace MYQuizSupervisor
 
            
         }
-
-       
     }
 
     public class ListItem
