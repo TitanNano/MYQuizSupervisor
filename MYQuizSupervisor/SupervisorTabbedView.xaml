@@ -6,7 +6,22 @@
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
             >
 
-  <ContentPage>
+   <ContentPage>
+    <TabbedPage.Title>
+      Login
+    </TabbedPage.Title>
+    
+    <StackLayout VerticalOptions="Center" Margin="15,0" >
+      <StackLayout>
+        <Image Source="icon.png" HeightRequest ="200" HorizontalOptions="Center" />
+        <Entry Placeholder="Bitte Passwort eingeben" FontSize="24"/>
+        <Button x:Name="btn_login_weiter" Text="Weiter" />
+      </StackLayout>
+    </StackLayout>
+    
+  </ContentPage>
+    
+    <ContentPage>
     <TabbedPage.Title>
       Veranstaltung erstellen
     </TabbedPage.Title>
