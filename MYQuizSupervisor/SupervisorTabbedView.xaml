@@ -7,6 +7,9 @@
             >
 
   <ContentPage>
+    <ContentPage.Title>
+      MYQuiz
+    </ContentPage.Title>
     <TabbedPage.Title>
       Veranstaltung erstellen
     </TabbedPage.Title>
@@ -14,10 +17,9 @@
     <StackLayout VerticalOptions="Center" Margin="15,0" >
       <StackLayout>
         <Label Text="Name der Veranstaltung" FontSize="24"/>
-        <Editor x:Name="ed_veranstaltungsname" />
 
-        <Button x:Name="btn_veranstaltung_weiter" Text="Weiter" />
-
+        <Editor />
+        <Button Text="Weiter" />
 
       </StackLayout>
     </StackLayout>
@@ -26,6 +28,9 @@
 
 
   <ContentPage>
+    <ContentPage.Title>
+      MYQuiz
+    </ContentPage.Title>
     <TabbedPage.Title>
       Fragebogen senden
     </TabbedPage.Title>
@@ -34,18 +39,18 @@
       <StackLayout>
 
         <Label Text="Veranstaltung auswählen" FontSize="24"/>
-        <Picker x:Name="picker_veranstaltungsname" />
+        <Picker />
 
         <Label Text="Gruppe auswählen" FontSize="24"/>
-        <Picker x:Name="picker_gruppe" />
+        <Picker />
 
         <Label Text="Frage auswählen" FontSize="24"/>
-        <ListView x:Name="lv_fragen" HeightRequest="250">
+        <ListView HeightRequest="250">
           <ListView.ItemTemplate>
             <DataTemplate>
               <ViewCell>
                 <StackLayout>
-                  <Label x:Name="lb_frage"  FontSize="22" />
+                  <Label  FontSize="22" />
                 </StackLayout>
               </ViewCell>
             </DataTemplate>
@@ -56,16 +61,16 @@
           <Label Text="Zeit erstellen" FontSize="18" VerticalOptions="Center" Margin="0,0,10,0"/>
           <StackLayout Orientation="Vertical" HorizontalOptions="Center">
             <Label Text="Min" FontSize="18" HorizontalTextAlignment="Center" />
-            <Editor x:Name="ed_min" Keyboard="Numeric" />
+            <Editor  Keyboard="Numeric" />
           </StackLayout>
           <StackLayout Orientation="Vertical" HorizontalOptions="Center">
             <Label Text="Sek" FontSize="18" HorizontalTextAlignment="Center"/>
-            <Editor x:Name="ed_sek" Keyboard="Numeric" />
+            <Editor Keyboard="Numeric" />
           </StackLayout>
         </StackLayout>
 
 
-        <Button x:Name="btn_fragebogen_weiter" Text="Weiter" Margin="0,10,0,15" HorizontalOptions="Fill"/>
+        <Button Text="Weiter" Margin="0,10,0,15" HorizontalOptions="Fill"/>
 
       </StackLayout>
     </StackLayout>
@@ -76,6 +81,9 @@
 
    <ContentPage>
 
+     <ContentPage.Title>
+       MYQuiz
+     </ContentPage.Title>
 
     <TabbedPage.Title>
       Frage erstellen
