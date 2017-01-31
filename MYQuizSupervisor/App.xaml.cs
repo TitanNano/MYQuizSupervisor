@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 
+
 namespace MYQuizSupervisor
 {
     public partial class App : Application
@@ -8,7 +9,7 @@ namespace MYQuizSupervisor
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new CreateQuestionView());
+            MainPage = new NavigationPage(new SupervisorTabbedView());
         }
 
         protected override void OnStart()
