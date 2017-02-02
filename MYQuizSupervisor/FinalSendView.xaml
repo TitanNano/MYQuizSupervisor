@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MYQuizSupervisor.FinalSendView">
+             x:Class="MYQuizSupervisor.FinalSendView" Title="Frage Absenden">
 
   <StackLayout VerticalOptions="Center" Margin="15,0" >
     <StackLayout>
@@ -11,7 +11,7 @@
         <Label Text="gebliebene Zeit" VerticalOptions="Center" FontSize="24" Margin="0,0,15,0"/>
         <Editor Text="13:08" InputTransparent="True" />
       </StackLayout>
-      <Button x:Name="btn_weiter" Text="Weiter" />
+      <Button Clicked="OnSendQuestion" x:Name="btn_weiter" Text="Weiter" />
 
       <Label Text="from server." FontSize="24" Margin="0,70,0,0"/>
     </StackLayout>
