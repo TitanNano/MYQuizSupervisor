@@ -5,11 +5,17 @@ namespace MYQuizSupervisor
 {
     public partial class App : Application
     {
+        public SupervisorTabbedView RootView {get; set;}
+        public FinalSendView FinalSendView {get; set;}
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new SupervisorTabbedView());
+            RootView = new SupervisorTabbedView();
+            FinalSendView = new FinalSendView();
+
+            MainPage = new NavigationPage(RootView);
         }
 
         protected override void OnStart()

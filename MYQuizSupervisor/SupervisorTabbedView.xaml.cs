@@ -9,13 +9,16 @@ using Xamarin.Forms;
 
 namespace MYQuizSupervisor
 {
+
     public partial class SupervisorTabbedView : TabbedPage
     {
+
+        private App App { get { return (MYQuizSupervisor.App)Application.Current; } }
+
         public SupervisorTabbedView()
         {
             InitializeComponent();
 
-            
             var list = new ObservableCollection<ListItem>();
 
             list.Add(new ListItem { Title = "Item 1" });
@@ -24,7 +27,12 @@ namespace MYQuizSupervisor
             repeater.ItemsSource = list;
             autoComplete.Suggestions = list;
 
-           
+
+        }
+
+        void OnQuestionReadyToSend(object sender, System.EventArgs e)
+        {
+            App.MainPage.Navigation.PushAsync(App.FinalSendView);
         }
     }
 
