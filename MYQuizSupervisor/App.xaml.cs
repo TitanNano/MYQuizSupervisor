@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using MYQuizSupervisor.Helpers;
+using Xamarin.Forms;
 
 
 namespace MYQuizSupervisor
@@ -16,13 +17,23 @@ namespace MYQuizSupervisor
             RootView = new SupervisorTabbedView();
             FinalSendView = new FinalSendView();
             LoginView = new LoginView();
+        }
 
-            MainPage = new NavigationPage(this.LoginView);
+        public void navigateTo(Page page)
+        {
+            MainPage = new NavigationPage(page);
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            if (Settings.ClientId == string.Empty)
+            {
+                this.navigateTo(this.LoginView);
+            }
+            else
+            {
+                this.navigateTo(this.RootView);
+            }
         }
 
         protected override void OnSleep()
