@@ -7,6 +7,7 @@ namespace MYQuizSupervisor
     {
         public SupervisorTabbedView RootView {get; set;}
         public FinalSendView FinalSendView {get; set;}
+        public LoginView LoginView { get; set; }
 
         public App()
         {
@@ -14,8 +15,9 @@ namespace MYQuizSupervisor
 
             RootView = new SupervisorTabbedView();
             FinalSendView = new FinalSendView();
+            LoginView = new LoginView();
 
-            MainPage = new NavigationPage(RootView);
+            MainPage = new NavigationPage(this.LoginView);
         }
 
         protected override void OnStart()
