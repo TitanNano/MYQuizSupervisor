@@ -9,6 +9,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Collections.ObjectModel;
 
 namespace MYQuizSupervisor
 {
@@ -24,6 +25,9 @@ namespace MYQuizSupervisor
 
         const string contentType = "application/json";
         const bool useFakeData = false;
+
+        private ObservableCollection<Group> CachedGroupList;
+        private long LastGroupListRefresh = 0;
 
         public Networking(string hostAddress)
         {
@@ -48,7 +52,12 @@ namespace MYQuizSupervisor
             }
         }
 
+        public long getUnixTimestamp()
+        {
+            long unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
+            return unixTimestamp;
+        }
 
         private async Task<T> sendRequest<T>(string route, string methode, object postData)
         {
@@ -59,7 +68,8 @@ namespace MYQuizSupervisor
                 return default(T);
             }
 
-            WebRequest request = WebRequest.Create(hostAddress + route);
+            HttpWebRequest request = WebRequest.CreateHttp(hostAddress + route);
+
             request.ContentType = contentType;
             request.Method = methode;
 
@@ -126,10 +136,18 @@ namespace MYQuizSupervisor
         }
 
         //Gruppen abrufen
-        public async void getGroups()
+        public async Task<ObservableCollection<Group>> getGroups()
         {
-            var result = await sendRequest<object>("/api/groups", "GET", null);
-            Debug.WriteLine("Networking - Group Message: " + result);
+            var timeNow = this.getUnixTimestamp();
+
+            // only re donwload every 30 seconds
+            if ((timeNow - this.LastGroupListRefresh) > 30)
+            {
+                this.CachedGroupList = await sendRequest<ObservableCollection<Group>>("/api/groups", "GET", null);
+                this.LastGroupListRefresh = this.getUnixTimestamp();
+            }
+
+            return this.CachedGroupList;
         }
     }
 }

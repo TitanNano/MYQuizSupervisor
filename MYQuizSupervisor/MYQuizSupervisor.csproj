@@ -52,6 +52,12 @@
     <Compile Include="Shared\Networking.cs" />
     <Compile Include="Shared\RegistrationDevice.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Shared\Device.cs" />
+    <Compile Include="Shared\Group.cs" />
+    <Compile Include="Shared\SingleTopic.cs" />
+    <Compile Include="Shared\AnswerOption.cs" />
+    <Compile Include="Shared\Question.cs" />
+    <Compile Include="Shared\QuestionBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SupervisorTabbedView.xaml">
