@@ -4,8 +4,7 @@
              x:Class="MYQuizSupervisor.SupervisorTabbedView"
              xmlns:local="clr-namespace:MYQuizSupervisor"
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
-             Title="MYQuiz"
-            >
+             Title="MYQuiz" CurrentPageChanged="OnCurrentPageChanged">
 
   <ContentPage>
     
@@ -82,7 +81,7 @@
       <ResourceDictionary>
         <DataTemplate x:Key="repeatTemplate">
           <ViewCell>
-            <Entry Placeholder="Antwort Text" Margin="0, 10, 0, 0" Text="{Binding Title}"></Entry>
+            <Entry Placeholder="Antwort Text" Margin="0, 10, 0, 0" Text="{Binding Text}" TextChanged="OnAnswerTextChanged"/>
           </ViewCell>
         </DataTemplate>
       </ResourceDictionary>
@@ -90,28 +89,28 @@
 
     <ContentPage.Content>
       <StackLayout Margin="30, 15" VerticalOptions="FillAndExpand" Spacing="10">
-        <controls:AutoCompleteView x:Name="autoComplete" Placeholder="Veranstaltung"
-            ShowSearchButton="false"/>
+        <controls:AutoCompleteView Placeholder="Veranstaltung" Suggestions="{Binding CurrentGroupSuggestions}"
+            ShowSearchButton="false" TextChanged="OnGroupTextChanged"/>
 
-        <Entry Placeholder="Fragen Text"></Entry>
+        <Entry Placeholder="Fragen Text" Text="{Binding NewQuestion.Text}"></Entry>
 
-        <StackLayout VerticalOptions="FillAndExpand" Spacing="10">
-          <controls:RepeaterView
-    				x:TypeArguments="local:ListItem"
+        <ScrollView VerticalOptions="FillAndExpand">
+        <controls:RepeaterView
+    				x:TypeArguments="local:LocalAnswerOption"
     				x:Name="repeater"
     				ItemTemplate="{StaticResource repeatTemplate}"></controls:RepeaterView>
-        </StackLayout>
+        </ScrollView>
 
-        <StackLayout>
-          <Label Text="Dauer" FontSize="18"/>
-          <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-            <Entry Placeholder="Min" Keyboard="Numeric" HorizontalOptions="FillAndExpand"></Entry>
-            <Label Text=" : "/>
-            <Entry Placeholder="Sec" Keyboard="Numeric" HorizontalOptions="FillAndExpand"></Entry>
-          </StackLayout>
-          <Button Text="Weiter" HorizontalOptions="Fill"/>
+        <StackLayout VerticalOptions="End">
+            <Label Text="Dauer" FontSize="18"/>
+
+		    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Entry Placeholder="Min" Text="{Binding NewQuestion.DurationMinutes}" Keyboard="Numeric" HorizontalOptions="FillAndExpand"></Entry>
+                <Label Text=" : "/>
+                <Entry Placeholder="Sec" Text="{Binding NewQuestion.DurationSeconds}" Keyboard="Numeric" HorizontalOptions="FillAndExpand"></Entry>
+            </StackLayout>
         </StackLayout>
-        <Button Clicked="OnQuestionReadyToSend" Text="Weiter" HorizontalOptions="Fill"/>
+        <Button Clicked="OnNewQuestionReadyToSend" Text="Weiter" HorizontalOptions="Fill"/>
       </StackLayout>
       
     </ContentPage.Content>
