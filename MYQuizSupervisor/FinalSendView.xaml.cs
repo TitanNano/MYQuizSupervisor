@@ -73,7 +73,7 @@ namespace MYQuizSupervisor
 
             OnPropertyChanged("RemainingTime");
 
-            App.navigateTo(this);
+            App.MainPage.Navigation.PushAsync(this);
         }
 
         void OnSendQuestion(object sender, System.EventArgs e)
