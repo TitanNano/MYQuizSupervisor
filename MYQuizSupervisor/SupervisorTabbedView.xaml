@@ -89,7 +89,7 @@
 
     <ContentPage.Content>
       <StackLayout Margin="30, 15" VerticalOptions="FillAndExpand" Spacing="10">
-        <controls:AutoCompleteView Placeholder="Veranstaltung" Suggestions="{Binding CurrentGroupSuggestions}"
+        <controls:AutoCompleteView Placeholder="Veranstaltung" Suggestions="{Binding CurrentGroupSuggestions}" Text="{Binding NewQuestion.Group}"
             ShowSearchButton="false" TextChanged="OnGroupTextChanged"/>
 
         <Entry Placeholder="Fragen Text" Text="{Binding NewQuestion.Text}"></Entry>

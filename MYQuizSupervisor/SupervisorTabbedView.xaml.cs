@@ -59,6 +59,8 @@ namespace MYQuizSupervisor
         {
             var questionaier = new GivenAnswer
             {
+                Group = this.CurrentGroupList.ToList().Find(item => item.Title == this.NewQuestion.Group),
+
                 QuestionBlock = new QuestionBlock
                 {
                     List = new ObservableCollection<Question>()
@@ -150,6 +152,8 @@ namespace MYQuizSupervisor
             {
                 answerOptions.Add(new LocalAnswerOption());
             }
+
+            repeater.ForceLayout();
         }
 
         public void ResetAnswerOptions() 
@@ -165,6 +169,7 @@ namespace MYQuizSupervisor
         public ObservableCollection<LocalAnswerOption> AnswerOptions { get; set; }
         public string DurationMinutes { get; set; } = "";
         public string DurationSeconds { get; set; } = "";
+        public string Group { get; set; } = "";
     }
 
     public class LocalAnswerOption
