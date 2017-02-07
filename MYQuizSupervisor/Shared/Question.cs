@@ -8,6 +8,6 @@ namespace MYQuizSupervisor
         public string Category { get; set; }
         public string MultipleChoice { get; set; }
         public string Text { get; set; }
-        public ObservableCollection<AnswerOption> AnswerOptionList { get; set; }
+        public ObservableCollection<AnswerOption> AnswerOptions { get; set; }
     }
 }

@@ -144,6 +144,7 @@ namespace MYQuizSupervisor
             if ((timeNow - this.LastGroupListRefresh) > 30)
             {
                 this.CachedGroupList = await sendRequest<ObservableCollection<Group>>("/api/groups", "GET", null);
+                this.LastGroupListRefresh = this.getUnixTimestamp();
             }
 
             return this.CachedGroupList;

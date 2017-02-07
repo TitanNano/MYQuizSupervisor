@@ -61,7 +61,7 @@ namespace MYQuizSupervisor
             {
                 QuestionBlock = new QuestionBlock
                 {
-                    QuestionList = new ObservableCollection<Question>()
+                    List = new ObservableCollection<Question>()
                 }
             };
 
@@ -69,13 +69,13 @@ namespace MYQuizSupervisor
             {
                 Text = this.NewQuestion.Text,
 
-                AnswerOptionList = new ObservableCollection<AnswerOption>(
+                AnswerOptions = new ObservableCollection<AnswerOption>(
                     this.NewQuestion.AnswerOptions
                     .Select<LocalAnswerOption, AnswerOption>(option => new AnswerOption { Text = option.Text })
                 )
             };
 
-            questionaier.QuestionBlock.QuestionList.Add(question);
+            questionaier.QuestionBlock.List.Add(question);
 
             var duration = (Int64.Parse(this.NewQuestion.DurationMinutes) * 60) + Int64.Parse(this.NewQuestion.DurationSeconds);
 
