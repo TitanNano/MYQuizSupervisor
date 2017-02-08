@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,45 @@ namespace MYQuizSupervisor
             this.ResetAnswerOptions();
 
             repeater.ItemsSource = this.NewQuestion.AnswerOptions;
+
+
+            //Questions vom Server holen            
+            initQuestion();
+            //alle 30 Sek. erlauben Fragen neu zu laden:
+            Xamarin.Forms.Device.StartTimer(new TimeSpan(0,0,30), 
+                                            () => { allowReInitQuestion(); return true; });
+
+        }
+
+        private bool isTimePassed = false;
+        
+        private void allowReInitQuestion()
+        {
+            isTimePassed = true;
+                        
+        }
+
+        private async void initQuestion()
+        {
+           try
+            {
+                lv_fragen.ItemsSource = await Networking.Current.getPreparedQuestionBlocks();
+            }
+            catch
+            {
+                await this.DisplayAlert("Netzwerk Fehler", "Fehler beim Abrufen der Fragenliste!", "Ok");
+            }
+           
+        }
+
+        private void updateQuestionBlock()
+        {
+            if (isTimePassed)
+            {
+                initQuestion();
+                isTimePassed = false;
+               
+            }
         }
 
         void OnQuestionReadyToSend(object sender, System.EventArgs e)
@@ -87,7 +127,11 @@ namespace MYQuizSupervisor
         public void OnCurrentPageChanged(object sender, System.EventArgs e)
         {
             this.updateGroupList();
+
+            this.updateQuestionBlock();            
         }
+
+        
 
         private async void updateGroupList()
         {
@@ -97,7 +141,7 @@ namespace MYQuizSupervisor
             }
             catch
             {
-                await this.DisplayAlert("Netzwerk Fehler", "Fehler beim abrufen der Veranstalltungs Liste!", "Ok");
+                await this.DisplayAlert("Netzwerk Fehler", "Fehler beim Abrufen der Veranstalltungsliste!", "Ok");
             }
         }
 

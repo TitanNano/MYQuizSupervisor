@@ -126,12 +126,13 @@ namespace MYQuizSupervisor
         }
 
         //Vorbereitete Fragen abrufen
-        public async void getPreparedQuestions(string questionListID)
+        public async Task<ObservableCollection<QuestionBlock>> getPreparedQuestionBlocks()
         {
 
-            string route = "/api/questionLists/" + questionListID;
+            string route = "/api/questionBlock";
 
-            var result = await sendRequest<object>(route, "GET", null);
+            var result = await sendRequest<ObservableCollection<QuestionBlock>>(route, "GET", null);
+            return result;
 
         }
 
