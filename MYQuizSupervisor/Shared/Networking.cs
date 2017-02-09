@@ -158,5 +158,12 @@ namespace MYQuizSupervisor
 
             return this.CachedGroupList;
         }
+
+        public async Task<GivenAnswer> sendQuestion(GivenAnswer question)
+        {
+            var result = await this.sendRequest<GivenAnswer>("/api/givenanswer/start1", "POST", question);
+
+            return result;
+        }
     }
 }

@@ -41,9 +41,11 @@ namespace MYQuizSupervisor
         {
             InitializeComponent();
 
-            this.updateGroupList();
             this.NewQuestion = new NewQuestion { AnswerOptions = new ObservableCollection<LocalAnswerOption>() };
             this.CurrentGroupSuggestions = new ObservableCollection<string>();
+            this.CurrentGroupList = new ObservableCollection<Group>();
+
+            this.updateGroupList();
             this.BindingContext = this;
 
             this.ResetAnswerOptions();
@@ -70,7 +72,7 @@ namespace MYQuizSupervisor
 
                 QuestionBlock = new QuestionBlock
                 {
-                    List = new ObservableCollection<Question>()
+                    Questions = new ObservableCollection<Question>()
                 }
             };
 
@@ -84,7 +86,7 @@ namespace MYQuizSupervisor
                 )
             };
 
-            questionaier.QuestionBlock.List.Add(question);
+            questionaier.QuestionBlock.Questions.Add(question);
 
             var duration = (Int64.Parse(this.NewQuestion.DurationMinutes) * 60) + Int64.Parse(this.NewQuestion.DurationSeconds);
 

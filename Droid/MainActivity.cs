@@ -24,6 +24,7 @@ namespace MYQuizSupervisor.Droid
             base.OnCreate(savedInstanceState);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Websockets.Droid.WebsocketConnection.Link();
 
             LoadApplication(new MYQuizSupervisor.App());
         }

@@ -5,5 +5,6 @@
         public long Id { get; set; }
         public string Title { get; set; }
         public string EnterGroupPin { get; set; }
+        public int DeviceCount { get; set; }
     }
 }

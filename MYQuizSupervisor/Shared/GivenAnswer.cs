@@ -19,5 +19,6 @@ namespace MYQuizSupervisor
         public AnswerOption AnswerOption;
         public Question Question;
         public QuestionBlock QuestionBlock;
+        public long SurveyId { get; set; }
     }
 }
