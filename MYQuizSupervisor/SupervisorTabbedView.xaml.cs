@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,8 +49,14 @@ namespace MYQuizSupervisor
             this.ResetAnswerOptions();
 
             repeater.ItemsSource = this.NewQuestion.AnswerOptions;
-        }
 
+
+            //Questions vom Server holen            
+            updateQuestionBlock();          
+
+        }
+              
+   
         void OnQuestionReadyToSend(object sender, System.EventArgs e)
         {
             App.MainPage.Navigation.PushAsync(App.FinalSendView);
@@ -87,7 +94,11 @@ namespace MYQuizSupervisor
         public void OnCurrentPageChanged(object sender, System.EventArgs e)
         {
             this.updateGroupList();
+
+            this.updateQuestionBlock();            
         }
+
+        
 
         private async void updateGroupList()
         {
@@ -97,9 +108,22 @@ namespace MYQuizSupervisor
             }
             catch
             {
-                await this.DisplayAlert("Netzwerk Fehler", "Fehler beim abrufen der Veranstalltungs Liste!", "Ok");
+                await this.DisplayAlert("Netzwerk Fehler", "Fehler beim Abrufen der Veranstalltungsliste!", "Ok");
             }
         }
+
+        private async void updateQuestionBlock()
+        {
+            try
+            {
+                lv_fragen.ItemsSource = await Networking.Current.getPreparedQuestionBlocks();
+            }
+            catch
+            {
+                await this.DisplayAlert("Netzwerk Fehler", "Fehler beim Abrufen der Fragenliste!", "Ok");
+            }
+        }
+
 
         void OnGroupTextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {

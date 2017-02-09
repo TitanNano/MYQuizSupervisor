@@ -32,17 +32,17 @@
 
     <StackLayout VerticalOptions="Center" Margin="30,0" >
       <StackLayout>
-       
-        <Picker Title="Veranstaltung auswählen" />
-        <Picker Title="Gruppe auswählen" />
+
+        <controls:AutoCompleteView Placeholder="Veranstaltung" Suggestions="{Binding CurrentGroupSuggestions}" Text="{Binding NewQuestion.Group}"
+            ShowSearchButton="false" TextChanged="OnGroupTextChanged"/>
 
         <Label Text="Frage auswählen" FontSize="18"/>
-        <ListView HeightRequest="250">
+        <ListView HeightRequest="250" x:Name="lv_fragen">
           <ListView.ItemTemplate>
             <DataTemplate>
               <ViewCell>
                 <StackLayout>
-                  <Label  FontSize="22" />
+                  <Label  FontSize="14" Text="{Binding Title}" />
                 </StackLayout>
               </ViewCell>
             </DataTemplate>
@@ -55,8 +55,7 @@
             <Entry Placeholder="Min" Keyboard="Numeric" HorizontalOptions="FillAndExpand"></Entry>
             <Label Text=" : "/>
             <Entry Placeholder="Sec" Keyboard="Numeric" HorizontalOptions="FillAndExpand"></Entry>
-          </StackLayout>
-          <Button Text="Weiter" HorizontalOptions="Fill" Margin="0,0,0,15"/>
+          </StackLayout>          
         </StackLayout>          
        
         <Button Clicked="OnQuestionReadyToSend" Text="Weiter" Margin="0,10,0,15" HorizontalOptions="Fill"/>

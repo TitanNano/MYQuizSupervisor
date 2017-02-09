@@ -17,15 +17,8 @@ namespace MYQuizSupervisor
             RootView = new SupervisorTabbedView();
             FinalSendView = new FinalSendView();
             LoginView = new LoginView();
-        }
 
-        public void navigateTo(Page page)
-        {
-            MainPage = new NavigationPage(page);
-        }
-
-        protected override void OnStart()
-        {
+            
             if (Settings.ClientId == string.Empty)
             {
                 this.navigateTo(this.LoginView);
@@ -34,6 +27,29 @@ namespace MYQuizSupervisor
             {
                 this.navigateTo(this.RootView);
             }
+            
+        }
+        public void navigateTo(Page page)
+        {
+            MainPage = new NavigationPage(page);
+        }
+
+        protected override void OnStart()
+        {
+            //führt zur Null-Exception bei UWP
+            /*
+            if (Settings.ClientId == string.Empty)
+            {
+                this.navigateTo(this.LoginView);
+            }
+            else
+            {
+                //this.navigateTo(this.RootView);
+                this.navigateTo(this.RootView);
+                
+            }
+            */
+            
         }
 
         protected override void OnSleep()
