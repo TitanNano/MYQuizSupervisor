@@ -213,14 +213,14 @@ namespace MYQuizSupervisor
             OnPropertyChanged("Questionair");
             this.Questionair = result;
 
-            this.CurrentSocket = Websockets.WebSocketFactory.Create();
-            this.CurrentSocket.Open("http://h2653223.stratoserver.net/ws/" + result.SurveyId);
+            // this.CurrentSocket = Websockets.WebSocketFactory.Create();
+            // this.CurrentSocket.Open("http://h2653223.stratoserver.net/ws/" + result.SurveyId);
 
-            var currentCount = 0;
+            // var currentCount = 0;
 
-            this.arrivedAnswers = 0;
+            // this.arrivedAnswers = 0;
 
-            this.CurrentSocket.OnMessage += (string obj) => {
+            /* this.CurrentSocket.OnMessage += (string obj) => {
                 var answer = JsonConvert.DeserializeObject<GivenAnswer>(obj);
 
                 if (answer != null)
@@ -228,7 +228,7 @@ namespace MYQuizSupervisor
                     currentCount += 1;
                     this.arrivedAnswers = currentCount;
                 }
-            };
+            }; */
          }
     }
 }
