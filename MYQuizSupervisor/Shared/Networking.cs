@@ -126,13 +126,21 @@ namespace MYQuizSupervisor
         }
 
         //Vorbereitete Fragen abrufen
+        long lastQuestionRefresh = 0;
+        ObservableCollection<QuestionBlock> oc_QuestionBlockSaved;
+
         public async Task<ObservableCollection<QuestionBlock>> getPreparedQuestionBlocks()
         {
-
-            string route = "/api/questionBlock";
-
-            var result = await sendRequest<ObservableCollection<QuestionBlock>>(route, "GET", null);
-            return result;
+            var timeNow = this.getUnixTimestamp();
+            //nach 30 sek. neuer Refresh möglich
+            if(timeNow - lastQuestionRefresh > 30)
+            {
+                string route = "/api/questionBlock";
+                oc_QuestionBlockSaved = await sendRequest<ObservableCollection<QuestionBlock>>(route, "GET", null);
+                lastQuestionRefresh = this.getUnixTimestamp();
+            }
+            
+            return oc_QuestionBlockSaved;
 
         }
 

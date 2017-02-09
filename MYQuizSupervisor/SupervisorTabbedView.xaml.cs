@@ -52,44 +52,11 @@ namespace MYQuizSupervisor
 
 
             //Questions vom Server holen            
-            initQuestion();
-            //alle 30 Sek. erlauben Fragen neu zu laden:
-            Xamarin.Forms.Device.StartTimer(new TimeSpan(0,0,30), 
-                                            () => { allowReInitQuestion(); return true; });
+            updateQuestionBlock();          
 
         }
-
-        private bool isTimePassed = false;
-        
-        private void allowReInitQuestion()
-        {
-            isTimePassed = true;
-                        
-        }
-
-        private async void initQuestion()
-        {
-           try
-            {
-                lv_fragen.ItemsSource = await Networking.Current.getPreparedQuestionBlocks();
-            }
-            catch
-            {
-                await this.DisplayAlert("Netzwerk Fehler", "Fehler beim Abrufen der Fragenliste!", "Ok");
-            }
-           
-        }
-
-        private void updateQuestionBlock()
-        {
-            if (isTimePassed)
-            {
-                initQuestion();
-                isTimePassed = false;
-               
-            }
-        }
-
+              
+   
         void OnQuestionReadyToSend(object sender, System.EventArgs e)
         {
             App.MainPage.Navigation.PushAsync(App.FinalSendView);
@@ -144,6 +111,19 @@ namespace MYQuizSupervisor
                 await this.DisplayAlert("Netzwerk Fehler", "Fehler beim Abrufen der Veranstalltungsliste!", "Ok");
             }
         }
+
+        private async void updateQuestionBlock()
+        {
+            try
+            {
+                lv_fragen.ItemsSource = await Networking.Current.getPreparedQuestionBlocks();
+            }
+            catch
+            {
+                await this.DisplayAlert("Netzwerk Fehler", "Fehler beim Abrufen der Fragenliste!", "Ok");
+            }
+        }
+
 
         void OnGroupTextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
