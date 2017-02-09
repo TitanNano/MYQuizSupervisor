@@ -16,6 +16,7 @@ namespace MYQuizSupervisor
     {
 
         private ObservableCollection<Group> _CurrentGroupList;
+        private ObservableCollection<QuestionBlock> _CurrentQuestionBlockList;
 
         private App App { get { return (MYQuizSupervisor.App)Application.Current; } }
 
@@ -37,6 +38,20 @@ namespace MYQuizSupervisor
             }
         }
 
+        public ObservableCollection<QuestionBlock> CurrentQuestionBlockList
+        {
+            get
+            {
+                return this._CurrentQuestionBlockList;
+            }
+
+            set
+            {
+                this._CurrentQuestionBlockList = value;
+                OnPropertyChanged("CurrentQuestionBlockList");
+            }
+        }
+
         public SupervisorTabbedView()
         {
             InitializeComponent();
@@ -46,16 +61,12 @@ namespace MYQuizSupervisor
             this.CurrentGroupList = new ObservableCollection<Group>();
 
             this.updateGroupList();
-            this.BindingContext = this;
-
+            this.updateQuestionBlock();
             this.ResetAnswerOptions();
 
+            this.BindingContext = this;
+
             repeater.ItemsSource = this.NewQuestion.AnswerOptions;
-
-
-            //Questions vom Server holen            
-            updateQuestionBlock();          
-
         }
               
    
@@ -118,9 +129,9 @@ namespace MYQuizSupervisor
         {
             try
             {
-                lv_fragen.ItemsSource = await Networking.Current.getPreparedQuestionBlocks();
+                this.CurrentQuestionBlockList = await Networking.Current.getPreparedQuestionBlocks();
             }
-            catch
+            catch (Exception e)
             {
                 await this.DisplayAlert("Netzwerk Fehler", "Fehler beim Abrufen der Fragenliste!", "Ok");
             }
