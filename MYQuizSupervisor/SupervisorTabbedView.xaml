@@ -14,9 +14,10 @@
     
     <StackLayout VerticalOptions="Center" Margin="30,0" >
       <StackLayout>
-        
-        <Entry Placeholder="Name der Veranstaltung" />
-        <Button Text="Weiter" />
+
+        <Entry x:Name="en_veranstaltung" Placeholder="Name der Veranstaltung" />
+        <Button x:Name="btn_veranstaltung" Text="Weiter" Clicked="OnVeranstaltung" />
+
 
       </StackLayout>
     </StackLayout>

@@ -198,6 +198,17 @@ namespace MYQuizSupervisor
             this.NewQuestion.AnswerOptions.Clear();
             this.NewQuestion.AnswerOptions.Add(new LocalAnswerOption());
         }
+
+
+        private void OnVeranstaltung(object sender, EventArgs args)
+        {
+
+            var title = en_veranstaltung.Text;
+            Networking.Current.createGroup(title);
+            //wechseln zur Frage-erstellen-Seite
+            CurrentPage = Children[2];
+
+        }
     }
 
     public class NewQuestion
