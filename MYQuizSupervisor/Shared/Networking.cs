@@ -75,7 +75,13 @@ namespace MYQuizSupervisor
 
             if (methode != "GET")
             {
-                var jsonString = JsonConvert.SerializeObject(postData);
+                //Json soll Parameter mit NULL beim String-erstellen ignorieren
+                var jsonString = JsonConvert.SerializeObject(postData,
+                                                        Newtonsoft.Json.Formatting.None,
+                                                        new JsonSerializerSettings
+                                                        {
+                                                            NullValueHandling = NullValueHandling.Ignore
+                                                        });
                 byte[] byteArray = Encoding.UTF8.GetBytes(jsonString);
                 Stream dataStream = await request.GetRequestStreamAsync();
                 dataStream.Write(byteArray, 0, byteArray.Length);
@@ -165,5 +171,14 @@ namespace MYQuizSupervisor
 
             return result;
         }
+
+        //Gruppe erstellen
+        public async void createGroup(string title)
+        {
+            Group group = new Group() { Title = title, DeviceCount = null, EnterGroupPin = null, Id = null };
+            await sendRequest<Group>("/api/groups", "POST", group);
+        }
+
+
     }
 }

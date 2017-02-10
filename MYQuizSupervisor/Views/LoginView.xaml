@@ -7,7 +7,7 @@
         <StackLayout HorizontalOptions="FillAndExpand">
             <Entry Placeholder="Bitte Passwort eingeben" IsEnabled="{Binding loginNotPending}"
 				Text="{Binding currentPassword}" Completed="PasswordReadyToLogin"
-				IsPassword="true" HorizontalOptions="FillAndExpand" FontSize="24"/>
+				IsPassword="true" HorizontalOptions="FillAndExpand" FontSize="22"/>
             <Button x:Name="btn_login_weiter" Text="Weiter" Clicked="PasswordReadyToLogin"
 				IsEnabled="{Binding loginNotPending}"/>
         </StackLayout>
