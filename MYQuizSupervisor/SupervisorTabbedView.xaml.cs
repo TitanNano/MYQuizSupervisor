@@ -16,6 +16,7 @@ namespace MYQuizSupervisor
     {
 
         private ObservableCollection<Group> _CurrentGroupList;
+        private ObservableCollection<QuestionBlock> _CurrentQuestionBlockList;
 
         private App App { get { return (MYQuizSupervisor.App)Application.Current; } }
 
@@ -37,23 +38,35 @@ namespace MYQuizSupervisor
             }
         }
 
+        public ObservableCollection<QuestionBlock> CurrentQuestionBlockList
+        {
+            get
+            {
+                return this._CurrentQuestionBlockList;
+            }
+
+            set
+            {
+                this._CurrentQuestionBlockList = value;
+                OnPropertyChanged("CurrentQuestionBlockList");
+            }
+        }
+
         public SupervisorTabbedView()
         {
             InitializeComponent();
 
-            this.updateGroupList();
             this.NewQuestion = new NewQuestion { AnswerOptions = new ObservableCollection<LocalAnswerOption>() };
             this.CurrentGroupSuggestions = new ObservableCollection<string>();
-            this.BindingContext = this;
+            this.CurrentGroupList = new ObservableCollection<Group>();
 
+            this.updateGroupList();
+            this.updateQuestionBlock();
             this.ResetAnswerOptions();
 
+            this.BindingContext = this;
+
             repeater.ItemsSource = this.NewQuestion.AnswerOptions;
-
-
-            //Questions vom Server holen            
-            updateQuestionBlock();          
-
         }
               
    
@@ -70,7 +83,7 @@ namespace MYQuizSupervisor
 
                 QuestionBlock = new QuestionBlock
                 {
-                    List = new ObservableCollection<Question>()
+                    Questions = new ObservableCollection<Question>()
                 }
             };
 
@@ -84,7 +97,7 @@ namespace MYQuizSupervisor
                 )
             };
 
-            questionaier.QuestionBlock.List.Add(question);
+            questionaier.QuestionBlock.Questions.Add(question);
 
             var duration = (Int64.Parse(this.NewQuestion.DurationMinutes) * 60) + Int64.Parse(this.NewQuestion.DurationSeconds);
 
@@ -116,9 +129,9 @@ namespace MYQuizSupervisor
         {
             try
             {
-                lv_fragen.ItemsSource = await Networking.Current.getPreparedQuestionBlocks();
+                this.CurrentQuestionBlockList = await Networking.Current.getPreparedQuestionBlocks();
             }
-            catch
+            catch (Exception e)
             {
                 await this.DisplayAlert("Netzwerk Fehler", "Fehler beim Abrufen der Fragenliste!", "Ok");
             }

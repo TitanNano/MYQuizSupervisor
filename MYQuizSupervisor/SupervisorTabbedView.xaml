@@ -37,7 +37,7 @@
             ShowSearchButton="false" TextChanged="OnGroupTextChanged"/>
 
         <Label Text="Frage auswählen" FontSize="18"/>
-        <ListView HeightRequest="250" x:Name="lv_fragen">
+        <ListView HeightRequest="250" ItemsSource="{Binding CurrentQuestionBlockList}">
           <ListView.ItemTemplate>
             <DataTemplate>
               <ViewCell>

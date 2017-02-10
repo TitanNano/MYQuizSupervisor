@@ -6,6 +6,6 @@ namespace MYQuizSupervisor
     {
         public long Id { get; set; }
         public string Title { get; set; }
-        public ObservableCollection<Question> List { get; set; }
+        public ObservableCollection<Question> Questions { get; set; }
     }
 }

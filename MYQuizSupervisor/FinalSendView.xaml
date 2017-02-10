@@ -3,10 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MYQuizSupervisor.FinalSendView" Title="Frage Absenden">
 
-	<StackLayout Margin="30,15" >
+	<StackLayout Margin="30,15">
+		<Label Text="{Binding GroupName}" FontSize="25"></Label>
+		<Label Text="{Binding QuestionTitle}" FontSize="30"></Label>
         <Picker Title="Abstimmen für" IsEnabled="{Binding AllowSingleTopic}" />
         <Label Text="{Binding RemainingTime}" FontSize="50" HorizontalTextAlignment="Center"/>
-		<Button Clicked="OnSendQuestion" Text="Senden"/>
+		<!-- <StackLayout Orientation="Horizontal">
+			<Label Text="Abgegebene Antworten: "/>
+			<Label Text="{Binding arrivedAnswers}"/>
+			<Label Text=" / "/>
+			<Label Text="{Binding Questionair.Group.DeviceCount}"/>
+		</StackLayout> -->
+		<Button Clicked="OnSendQuestion" Text="Senden" IsEnabled="{Binding isNotBusy}"/>
     </StackLayout>
   
 </ContentPage>
